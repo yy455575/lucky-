@@ -19,38 +19,36 @@ def get_base64_of_bin_file(bin_file):
 # 这里你可以替换成你抓取到的卡池背景图路径
 # bg_base64 = get_base64_of_bin_file("assets/bg_genshin.jpg")
 # 为了演示，这里用一个纯色渐变替代背景图
-custom_css = f"""
+# 注意：字符串前面的 f 已经去掉了，或者你把大括号去掉了
+custom_css = """
 <style>
-    /* 隐藏顶部导航条和右下角 watermark */
-    #MainMenu {{visibility: hidden;}}
-    header {{visibility: hidden;}}
-    footer {{visibility: hidden;}}
+    /* 隐藏顶部导航条 */
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
     
-    /* 强行抹平所有的内边距和外边距，让背景铺满 */
-    .block-container {{
+    .block-container {
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
         padding-left: 0rem !important;
         padding-right: 0rem !important;
         max-width: 100% !important;
-    }}
+    }
     
-    /* 设置全局背景，实际应用中将下面的 background 替换为 url(data:image/jpeg;base64,{bg_base64}) */
-    [data-testid="stAppViewContainer"] {{
+    [data-testid="stAppViewContainer"] {
         background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-    }}
+    }
     
-    /* 自定义一个底部按钮区域的样式 */
-    .button-container {{
+    .button-container {
         position: fixed;
         bottom: 50px;
         right: 50px;
         display: flex;
         gap: 20px;
-    }}
+    }
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
